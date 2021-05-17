@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 2px solid black;
+            margin: 200px;
+            padding: 20px;
+        }
+        h1 {
+            word-spacing: 10px;
+            text-decoration: underline;
+        }
+        .message {
+            border: 2px solid black;
+            color: white;
+            background-color: green;
+            margin: 50px 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+
+    <div class="box">
+        <h1>Email Addresses Entered:</h1>
+        {% for one_user in all_users %}
+            <a href="/success">{{one_user['email']}}</a>
+            <a href="/delete/{{one_user['id']}}">Delete</a>
+            <br>
+        {% endfor %}
+    </div>
+</body>
+</html>
